@@ -13,15 +13,14 @@ class HomeRepository(private val dataSource: SearchRemoteDataSource, private val
      */
     suspend fun getTodaysData(): Media? {
         val data = localDataSource.getTodaysData()
-        return if (data==null || data.isEmpty()){
+        return if (data==null){
             val result = dataSource.fetchMedia()
             if (result != null) {
                 saveTodaysData(result.getTodaysData())
             }
             result
         }else{
-            //only 1 record will be present
-            data[0].getMedia()
+            data.getMedia()
         }
     }
 

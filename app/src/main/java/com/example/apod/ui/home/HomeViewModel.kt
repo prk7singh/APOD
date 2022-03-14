@@ -18,17 +18,15 @@ import com.example.apod.data.db.Media
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 enum class ApiStatus {NETWORK_ERROR, ERROR, DONE}
 
 class HomeViewModel : ViewModel() {
 
-    private val _media = MutableLiveData<Media>()/*.apply {
-        //value = "https://apod.nasa.gov/apod/image/2203/PointReyesMilkyWayDanZafra1024.jpg"
-        viewModelScope.launch {
-            value = MediaRepository(MediaAPIImpl(),Dispatchers.IO).fetchMedia()
-        }
-    }*/
+    companion object{
+        private val TAG = this::class.java.name
+    }
+
+    private val _media = MutableLiveData<Media>()
     val media: LiveData<Media> = _media
 
     private val _status = MutableLiveData<ApiStatus>()
@@ -70,7 +68,7 @@ class HomeViewModel : ViewModel() {
 
     fun addToFavorites(context:Context) {
         viewModelScope.launch {
-            Log.d("TAG","Adding to fav ${media.value?.date}")
+            Log.d(TAG,"Adding to fav ${media.value?.date}")
             FavoritesRepository(FavLocalDataSource(context),Dispatchers.IO).addToFavorites(media.value!!)
         }
     }

@@ -8,7 +8,7 @@ import com.example.apod.data.db.TodayData
 @Dao
 interface HomeDao {
     @Query("SELECT * from today WHERE date = date('now')")
-    fun getTodaysData(): List<TodayData>?
+    fun getTodaysData(): TodayData?
 
     @Insert
     fun saveTodaysData(media: TodayData)
