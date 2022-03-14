@@ -11,8 +11,8 @@ An Android app that helps in displaying NASA's astronomy picture of the day
 
 This app uses NASA’s open APIs ( https://api.nasa.gov/ ) and in particular, the APOD ( Astronomy picture of the day ) resource. 
 
-## 3rd Party Libraries/Frameworks Used:
-- OkHttp
+## Libraries/Frameworks Used:
+- OkHttp 
 - Coil
 - Room
 
